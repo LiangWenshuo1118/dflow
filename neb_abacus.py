@@ -200,7 +200,8 @@ class NEBPostProcessing(OP):
     @classmethod
     def get_input_sign(cls) -> OPIOSign:
         return OPIOSign({
-            "neb_traj": Artifact(Path)
+            "neb_traj": Artifact(Path),
+            "num_images": Parameter(int)
         })
 
     @classmethod
@@ -215,7 +216,7 @@ class NEBPostProcessing(OP):
 
         neb_traj = op_in["neb_traj"]
 
-        neb_image = neb_post_processing(neb_traj)
+        neb_image = neb_post_processing(neb_traj,num_images)
 
         op_out = {
             "neb_image": neb_image
